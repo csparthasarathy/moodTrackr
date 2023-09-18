@@ -63,6 +63,4 @@ router.put('/:id',adminAuthCheck,(req,res,next)=>{
     })
  }) 
 
-
-
 module.exports = router;

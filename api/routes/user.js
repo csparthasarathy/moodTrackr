@@ -36,7 +36,7 @@ router.post('/signup', (req, res, next) => {
                                 })
                             })
                     }else{
-                        return res.status(401).json({
+                        return res.status(404).json({
                             message: 'Username Already exists'
                         })
                     }
@@ -57,13 +57,13 @@ router.post('/signin', (req, res, next) => {
         .exec()
         .then(user => {
             if (user.length < 1) {
-                return res.status(401).json({
+                return res.status(404).json({
                     message: 'User not Found'
                 })
             }
             bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                 if (!result) {
-                    return res.status(401).json({
+                    return res.status(404).json({
                         message: 'Your Password is Incorrect'
                     })
                 }

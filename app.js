@@ -1,8 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser');
 const app = express();
-const cors = require('cors');
-const morgan = require('morgan')
 const questionRoute = require('./api/routes/questionnaire')
 const adminQuestionRoute = require('./api/routes/addQuestionnaire')
 const userRoute =require('./api/routes/user');
@@ -16,8 +14,6 @@ mongoose.connection.on('error',err=>{
 mongoose.connection.on('connected',err=>{
     console.log("Connected to the Database")
 })
-app.use(cors());
-app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json());
 

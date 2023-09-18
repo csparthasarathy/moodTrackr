@@ -7,13 +7,13 @@ module.exports = (req,res,next)=>{
         if(verify.username === "moodtrackrAdmin"){
             next();
         }else{
-            return res.status(401).json({
+            return res.status(404).json({
                 message:'Invalid Admin Authorization Error'
             })
         }
     }
     catch(error){
-        return res.status(401).json({
+        return res.status(404).json({
             error:'Invalid Admin Authorization Error'
         })
     }
