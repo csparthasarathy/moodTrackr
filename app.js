@@ -5,6 +5,8 @@ const questionRoute = require('./api/routes/questionnaire')
 const adminQuestionRoute = require('./api/routes/addQuestionnaire')
 const userRoute =require('./api/routes/user');
 const mongoose = require('mongoose')
+const cors = require('cors');
+const morgan = require('morgan')
 
 mongoose.connect("mongodb+srv://moodtrackr:moodtrackr1@moodtrackr.hwwdhdl.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp")
 
@@ -17,6 +19,8 @@ mongoose.connection.on('connected',err=>{
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json());
 
+app.use(cors());
+app.use(morgan('dev'))
 app.use("/questionnaire",questionRoute)
 app.use("/adminquestionnaire",adminQuestionRoute)
 app.use("/userList",userRoute)
