@@ -12,6 +12,12 @@ router.post('/signup', (req, res, next) => {
                 error: err
             })
         }
+        
+        if(req.body.username === '' || req.body.password === ''){
+            return res.status(404).json({
+                message: 'Username or Password cannot be empty'
+            }) 
+        }
         else {
             UserList.find({ username: req.body.username })
                 .exec()
@@ -60,12 +66,16 @@ router.post('/signin', (req, res, next) => {
                 return res.status(404).json({
                     message: 'User not Found'
                 })
+
+
             }
             bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                 if (!result) {
                     return res.status(404).json({
                         message: 'Your Password is Incorrect'
                     })
+
+
                 }
                 if (result) {
                     const token = jwt.sign({

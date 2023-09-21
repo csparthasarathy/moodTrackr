@@ -4,7 +4,9 @@ const app = express();
 const questionRoute = require('./api/routes/questionnaire')
 const adminQuestionRoute = require('./api/routes/addQuestionnaire')
 const userRoute =require('./api/routes/user');
+const storageRoute=require('./api/routes/predStrorage');
 const mongoose = require('mongoose')
+
 const cors = require('cors');
 const morgan = require('morgan')
 
@@ -24,6 +26,7 @@ app.use(morgan('dev'))
 app.use("/questionnaire",questionRoute)
 app.use("/adminquestionnaire",adminQuestionRoute)
 app.use("/userList",userRoute)
+app.use("/storage",storageRoute)
 
 // Error Message for wrong URL
 app.use((req,res,next)=>{
